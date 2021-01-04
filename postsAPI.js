@@ -32,6 +32,8 @@ Route.get('/get_student', (req,res) => {
 })
 
 
+
+
 Route.post('/update-student', (req, res) => {
     console.log(req.body);
     let query =  `UPDATE student_information
