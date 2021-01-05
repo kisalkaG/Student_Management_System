@@ -1,9 +1,9 @@
 <template>
   <div id="name">
-    <h1>Registration Form</h1>
+    <h1>{{ "Registration Form" }}</h1>
     <form class="form-horizontal">
       <div class="new form-group">
-        <label class="control-label col-sm-2" for="name">Name:</label>
+        <label class="control-label col-sm-2" for="name">{{ "Name :" }}</label>
         <div class="col-sm-8">
           <input
             type="text"
@@ -16,7 +16,9 @@
       </div>
 
       <div class="new form-group">
-        <label class="control-label col-sm-2" for="Address">Address:</label>
+        <label class="control-label col-sm-2" for="Address">{{
+          "Address :"
+        }}</label>
         <div class="col-sm-8">
           <input
             type="text"
@@ -29,7 +31,9 @@
       </div>
 
       <div class="new form-group">
-        <label class="control-label col-sm-2" for="birthday">Birthday:</label>
+        <label class="control-label col-sm-2" for="birthday">{{
+          "Birthday :"
+        }}</label>
         <div class="col-sm-8">
           <input
             type="text"
@@ -42,9 +46,9 @@
       </div>
 
       <div class="new form-group">
-        <label class="control-label col-sm-2" for="attendance_day"
-          >Attendance Day:</label
-        >
+        <label class="control-label col-sm-2" for="attendance_day">{{
+          "Attendance Day :"
+        }}</label>
         <div class="col-sm-8">
           <input
             type="text"
@@ -57,9 +61,9 @@
       </div>
 
       <div class="new form-group">
-        <label class="control-label col-sm-2" for="name_of_owner"
-          >Name of Owner:</label
-        >
+        <label class="control-label col-sm-2" for="name_of_owner">{{
+          "Name of Owner :"
+        }}</label>
         <div class="col-sm-8">
           <input
             type="text"
@@ -73,7 +77,7 @@
     </form>
 
     <button type="button" class="btn btn-primary" @click.prevent="saveUser()">
-      Submit
+      {{ "Submit" }}
     </button>
   </div>
 </template>

@@ -1,39 +1,47 @@
 <template>
-  <div id="">
+  <div>
     <!-- <pre>{{ students[0] }}</pre> -->
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>address</th>
-          <th>birthday</th>
-          <th>attendance_date</th>
-          <th>name_of_owner</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
+    <div>
+      <h1>{{ "Student Information" }}</h1>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{ "Id" }}</th>
+            <th>{{ "Name" }}</th>
+            <th>{{ "Address" }}</th>
+            <th>{{ "Birthday" }}</th>
+            <th>{{ "Attendance Date" }}</th>
+            <th>{{ "Name of Owner" }}</th>
+            <th>{{ "Edit" }}</th>
+            <th>{{ "Delete" }}</th>
+          </tr>
+        </thead>
 
-      <tr v-for="student in students" :key="student.id">
-        <td>{{ student.id }}</td>
-        <td>{{ student.name }}</td>
-        <td>{{ student.address }}</td>
-        <td>{{ student.birthday }}</td>
-        <td>{{ student.attendance_date }}</td>
-        <td>{{ student.name_of_owner }}</td>
-        <td>
-          <button
-            @click.prevent="updateStudent(student)"
-            class="btn btn-info btn-sm"
-            data-toggle="modal"
-            data-target="#myModal"
-          >
-            Edit
-          </button>
-        </td>
-      </tr>
-    </table>
+        <tr v-for="student in students" :key="student.id">
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.address }}</td>
+          <td>{{ student.birthday }}</td>
+          <td>{{ student.attendance_date }}</td>
+          <td>{{ student.name_of_owner }}</td>
+          <td>
+            <button
+              @click.prevent="updateStudent(student)"
+              class="btn btn-info btn-sm"
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              {{ "Edit" }}
+            </button>
+          </td>
+          <td>
+            <button @click.prevent="deleteStudent(student.id)">
+              {{ "Delete" }}
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
@@ -42,12 +50,14 @@
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
-            <h4 class="modal-title">Modal Header</h4>
+            <h4 class="modal-title">{{ "Add New Student" }}</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="new form-group">
-                <label class="control-label col-sm-2" for="name">Name:</label>
+                <label class="control-label col-sm-2" for="name">{{
+                  "Name :"
+                }}</label>
                 <div class="col-sm-8">
                   <input
                     type="text"
@@ -60,9 +70,9 @@
               </div>
 
               <div class="new form-group">
-                <label class="control-label col-sm-2" for="Address"
-                  >Address:</label
-                >
+                <label class="control-label col-sm-2" for="Address">{{
+                  "Address :"
+                }}</label>
                 <div class="col-sm-8">
                   <input
                     type="text"
@@ -75,9 +85,9 @@
               </div>
 
               <div class="new form-group">
-                <label class="control-label col-sm-2" for="birthday"
-                  >Birthday:</label
-                >
+                <label class="control-label col-sm-2" for="birthday">{{
+                  "Birthday :"
+                }}</label>
                 <div class="col-sm-8">
                   <input
                     type="text"
@@ -90,9 +100,9 @@
               </div>
 
               <div class="new form-group">
-                <label class="control-label col-sm-2" for="attendance_day"
-                  >Attendance Day:</label
-                >
+                <label class="control-label col-sm-2" for="attendance_day">{{
+                  "Attendance Day :"
+                }}</label>
                 <div class="col-sm-8">
                   <input
                     type="text"
@@ -105,9 +115,9 @@
               </div>
 
               <div class="new form-group">
-                <label class="control-label col-sm-2" for="name_of_owner"
-                  >Name of Owner:</label
-                >
+                <label class="control-label col-sm-2" for="name_of_owner">{{
+                  "Name of Owner :"
+                }}</label>
                 <div class="col-sm-8">
                   <input
                     type="text"
@@ -126,7 +136,7 @@
               class="btn btn-default"
               data-dismiss="modal"
             >
-              Update
+              {{ "Update" }}
             </button>
           </div>
         </div>
@@ -187,11 +197,27 @@ export default {
         attendance_date: this.userAttendanceDay,
         name_of_owner: this.userOwnerName,
       };
-      let url = "http://localhost:5000/students//update-student";
+      let url = "http://localhost:5000/students/update-student";
       axios.post(url, user).then((response) => {
         if (response.status == 200) {
           location.reload();
-          this.$router.push({ path: "/information" });         
+          this.$router.push({ path: "/information" });
+        }
+      });
+    },
+
+    deleteStudent(studentId) {
+      // alert(studentId);
+
+      const userId = {
+        id: studentId,
+      };
+
+      let url = "http://localhost:5000/students/delete-student";
+      axios.post(url, userId).then((response) => {
+        if (response.status == 200) {
+          location.reload();
+          this.$router.push({ path: "/information" });
         }
       });
     },
