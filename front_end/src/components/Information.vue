@@ -35,7 +35,7 @@
             </button>
           </td>
           <td>
-            <button @click.prevent="deleteStudent(student.id)">
+            <button @click.prevent="deleteStudent(student.id)" class="btn btn-danger btn-sm">
               {{ "Delete" }}
             </button>
           </td>

@@ -22,6 +22,8 @@
             <th>{{ "Total Fee" }}</th>
             <th>{{ "Amount Paid" }}</th>
             <th>{{ "Rest of Amount" }}</th>
+            <th>{{ "Edit" }}</th>
+             <th>{{ "Delete" }}</th>
           </tr>
         </thead>
 
@@ -36,9 +38,16 @@
           <td>{{ studentFee.total_fee }}</td>
           <td>{{ studentFee.amount_paid }}</td>
           <td>{{ studentFee.rest_of_amount }}</td>
+          <td><button @click.prevent ="updateStudentFees(studentFee)"
+          class="btn btn-info btn-sm"
+              data-toggle="modal"
+              data-target="#myModal"
+            >{{ "Edit" }}</button></td>
+          <td><button @click.prevent ="deleteStudentFee(studentFee.id)" class="btn btn-danger btn-sm">{{"Delete"}}</button></td>  
         </tr>
       </table>
     </div>
+
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
@@ -167,6 +176,15 @@
             >
               {{ "Submit" }}
             </button>
+
+            <button
+              type="submit"
+              class="btn btn-default pull-right"
+              data-dismiss="modal"
+              @click.prevent="saveUpdateStudentFees()"
+            >
+              {{ "Update" }}
+            </button>
           </div>
         </div>
       </div>
@@ -188,6 +206,8 @@ export default {
       userAdditionalFee: null,
       userAmountPaid: null,
       studentFees: [],
+      userTotalFee:null,
+      userRestofAmount:null,
     };
   },
 
@@ -229,6 +249,56 @@ export default {
           }
         });
     },
+
+    updateStudentFees(studentFee) {
+        this.userAction = studentFee.action;
+        this.userId = studentFee.id;
+        this.userName = studentFee.name;
+        this.userGrade = studentFee.grade;
+        this.userSchoolFee = studentFee.school_fee;
+        this.userOtherFee = studentFee.other_fee;
+        this.userAdditionalFee = studentFee.additional_fee;
+        this.userTotalFee = studentFee.total_fee ;
+        this.userAmountPaid = studentFee.amount_paid;
+        this.userRestofAmount= studentFee.rest_of_amount;
+    },
+
+    saveUpdateStudentFees() {
+      const studentFee = {
+        action: this.userAction,
+        id: this.userId,
+        name: this.userName,
+        grade: this.userGrade,
+        school_fee: this.userSchoolFee,
+        other_fee: this.userOtherFee,
+        additional_fee: this.userAdditionalFee,
+        amount_paid: this.userAmountPaid,
+      };
+
+      let url = "http://localhost:5000/students/update-student_fee";
+      axios.post(url,studentFee).then((response) => {
+        if (response.status == 200) {
+          window.location.reload();
+          // this.$router.push({ path: "/information" });
+        }
+      });
+
+    },
+
+    deleteStudentFee(studentFeeId) {
+       const student = {
+         id : studentFeeId,
+       }
+
+       let url = "http://localhost:5000/students/delete_student_fee";
+       axios.post(url,student).then((response) => {
+        if (response.status == 200) {
+          window.location.reload();
+          // this.$router.push({ path: "/information" });
+        }
+      });
+    },
+    
   },
 };
 </script>

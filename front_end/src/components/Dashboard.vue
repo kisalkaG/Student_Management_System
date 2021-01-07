@@ -1,17 +1,74 @@
 <template>
-<div id="Dashboard">
-    <div class="row">
-    <div class="col-sm-4" > <router-link to="/online-registration"> Online Registration</router-link></div>
-    <div class="col-sm-4" ><router-link to="/information">Students Information</router-link></div>
-    <div class="col-sm-4" ><router-link to="/fee-management">School Fee Management</router-link></div>    
-  </div>
+  <div class="main">
+    <h1 class="text-dark text-center">{{ "STUDENT MANAGEMENT SYSTEM" }}</h1>
+    <div class="icon_container">
+      <div class="col-sm-4 dashboard_icon">
+        <img class="imag" src="../assets/add_student.png" />
+        <h4>{{ "Online Registration" }}</h4>
+        <router-link
+          to="/online-registration"
+          type="button"
+          class="btn btn-outline-dark btn-lg"
+        >
+          {{ "Register" }}</router-link
+        >
+      </div>
 
-  <div class="row">
-    <div class="col-sm-4 mt-10 padding-xs" ><router-link to="/result-management">Exam & Result Management</router-link></div>
-    <div class="col-sm-4" ><router-link to="/pay-management">Staff Pay Roll Management</router-link></div>
-    <div class="col-sm-4" ><router-link to="/library-management">Library Management</router-link></div>    
-  </div>   
-</div>
+      <div class="col-sm-4 dashboard_icon">
+        <img class="imag" src="../assets/information.png" />
+        <h4>{{ "Students Information" }}</h4>
+        <router-link
+          to="/information"
+          type="button"
+          class="btn btn-outline-dark btn-lg"
+          >{{ "Info" }}</router-link
+        >
+      </div>
+      <div class="col-sm-4 dashboard_icon">
+        <img class="imag" src="../assets/fee.png" />
+        <h4>{{ "School Fee Management" }}</h4>
+        <router-link
+          to="/fee-management"
+          type="button"
+          class="btn btn-outline-dark btn-lg"
+          >{{ "Manage" }}</router-link
+        >
+      </div>
+    </div>
+
+    <div class="icon_container">
+      <div class="col-sm-4 dashboard_icon">
+        <img class="imag" src="../assets/result.png" />
+        <h4>{{ "Exam & Result Management" }}</h4>
+        <router-link
+          to="/result-management"
+          type="button"
+          class="btn btn-outline-dark btn-lg"
+          >{{ "Manage" }}</router-link
+        >
+      </div>
+      <div class="col-sm-4 dashboard_icon">
+        <img class="imag" src="../assets/add_student.png" />
+        <h4>{{ "Staff Pay Roll Management" }}</h4>
+        <router-link
+          to="/pay-management"
+          type="button"
+          class="btn btn-outline-dark btn-lg"
+          >{{ "Manage" }}</router-link
+        >
+      </div>
+      <div class="col-sm-4 dashboard_icon">
+        <img class="imag" src="../assets/add_student.png" />
+        <h4>{{ "Library Management" }}</h4>
+        <router-link
+          to="/library-management"
+          type="button"
+          class="btn btn-outline-dark btn-lg"
+          >{{ "Manage" }}</router-link
+        >
+      </div>
+    </div>
+  </div>
 </template>
 
 
@@ -19,16 +76,39 @@
 export default {
   methods: {
     GoToOnlineRegistration() {
-      this.$router.push({ path: '/information' })
-    }
-  }  
-}
+      this.$router.push({ path: "/information" });
+    },
+  },
+};
 </script>
 
 <style scoped>
-    #Dashboard {
-      font-size: 30px;
-      margin: 100px;
-    }
-    
+.main {
+  display: flex;
+  flex-direction: column;
+}
+.icon_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.dashboard_icon {
+  height: auto;
+  width: auto;
+  margin: 20px;
+  padding: 20px;
+  /* border: 1px solid black; */
+  text-align: center;
+  font-size: 30px;
+  background-color: lightgray;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.imag {
+  height: 200px;
+  width: 200px;
+  margin: 5px;
+  padding: 5px;
+}
 </style>

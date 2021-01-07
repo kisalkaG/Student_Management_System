@@ -84,4 +84,33 @@ Route.get("/get_student_fee", (req, res) => {
   });
 });
 
+Route.post("/update-student_fee", (req,res) => {
+  console.log(req.body);
+  let query = `UPDATE fee_management 
+  SET action = '${req.body.action}',  name= '${req.body.name}', grade= '${req.body.grade}', school_fee= '${req.body.school_fee}',
+  other_fee= '${req.body.other_fee}', additional_fee= '${req.body.additional_fee}', total_fee= '${req.body.school_fee}' + '${req.body.other_fee}' + '${req.body.additional_fee}',
+  amount_paid= '${req.body.amount_paid}', rest_of_amount= '${req.body.school_fee}' + '${req.body.other_fee}' + '${req.body.additional_fee}' - '${req.body.amount_paid}'
+  WHERE id = '${req.body.id}'`;
+
+  con.query(query, (err, rows, fields) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      console.log(`Error: ${err} occured.`);
+    }
+  });
+});
+
+Route.post("/delete_student_fee", (req, res) => {
+  let query =`DELETE FROM fee_management WHERE id='${req.body.id}'`;
+
+  con.query(query, (err, rows, fields) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      console.log(`Error: ${err} occured.`);
+    }
+  });
+});
+
 module.exports = Route;
