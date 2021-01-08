@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <pre>{{ students[0] }}</pre> -->
-    <div>
+    <div class="container">
       <h1>{{ "Student Information" }}</h1>
       <table class="table table-striped">
         <thead>

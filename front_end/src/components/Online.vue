@@ -1,8 +1,10 @@
 <template>
-  <div id="name">
-    <h1>{{ "Registration Form" }}</h1>
+  <div id="form">
+    
+    <h1 class="text-dark text-center">{{("Registration Form") }}</h1>
+    <div class="container">
     <form class="form-horizontal">
-      <div class="new form-group">
+      <div class="form-group">
         <label class="control-label col-sm-2" for="name">{{ "Name :" }}</label>
         <div class="col-sm-8">
           <input
@@ -74,11 +76,13 @@
           />
         </div>
       </div>
-    </form>
-
-    <button type="button" class="btn btn-primary" @click.prevent="saveUser()">
+      <button type="button" class="btn btn-primary pull-right" @click.prevent="saveUser()">
       {{ "Submit" }}
     </button>
+    </form>
+    </div>
+   
+    
   </div>
 </template>
 
@@ -118,7 +122,8 @@ export default {
 </script>
 
 <style scoped>
-#name {
+#form {
   font-size: 20px;
+  background-color: lightgray;
 }
 </style>

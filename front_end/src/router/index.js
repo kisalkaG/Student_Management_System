@@ -4,7 +4,7 @@ import Online from '../components/Online'
 import Information from '../components/Information'
 import Fee from '../components/Fee'
 import Result from '../components/Result'
-import Pay from '../components/Pay'
+import Pay from '../components/Attendance'
 import Library from '../components/Library'
 import Dashboard from '../components/Dashboard'
 
@@ -43,8 +43,8 @@ const routes = [
   },
 
   {
-    path: '/pay-management',
-    name: 'pay-management',
+    path: '/attendance-management',
+    name: 'attendance-management',
     component: Pay    
   },
   
