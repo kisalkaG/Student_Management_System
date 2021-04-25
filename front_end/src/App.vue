@@ -2,7 +2,7 @@
   <div id="app">
     <div class="col-sm-4">
       <h3>
-        <router-link to="/dashboard"> {{ "Dashboard" }}</router-link>
+        <router-link to="/dashboard"> {{("Dashboard")}}</router-link>
       </h3>
     </div>
     <router-view />

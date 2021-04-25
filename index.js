@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors =require('cors');
 const connection = require('./DBConnection');
-const postsAPI = require('./postsAPI');
+const postsAPI = require('./studentsAPI');
 
 // const logger = (req,res,next) => {
 //     console.log("Hello World");
